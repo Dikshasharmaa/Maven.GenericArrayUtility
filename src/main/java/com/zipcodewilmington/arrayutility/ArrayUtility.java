@@ -55,19 +55,22 @@ public class ArrayUtility<T>{
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
         int maxCount =0;
-        T value = null;
-        for(int i =0; i<inputArray.length;i++){
+        T frequent = null;
+        List<T> newArray = new ArrayList<>(Arrays.asList(this.inputArray));
+        newArray.addAll(Arrays.asList(arrayToMerge));
+        for(int i =0; i<newArray.size();i++){
             int count =0;
-            for(int j =0;j<= inputArray.length;j++){
-                if(inputArray[i] == inputArray[j]){
+            for(int j =0;j<newArray.size();j++){
+                if(newArray.get(i).equals(newArray.get(j))){
                     count++;
                 }
             }
             if(count>maxCount){
-                value = inputArray[i];
+                maxCount = count;
+                frequent = newArray.get(i);
             }
         }
 
-        return value;
+        return frequent;
     }
 }
